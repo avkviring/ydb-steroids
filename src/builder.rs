@@ -22,7 +22,8 @@ impl YdbClientBuilder {
     pub fn new_from_env(db_name: &str) -> Self {
         let namespace = std::env::var("YDB_NAMESPACE").unwrap_or_else(|_| "local".to_string());
         let host = std::env::var("YDB_HOST").unwrap();
-        let port: u16 = std::env::var("YDB_PORT").unwrap()
+        let port: u16 = std::env::var("YDB_PORT")
+            .unwrap()
             .parse()
             .unwrap_or_else(|_| panic!("Expect number but {:?}", std::env::var("YDB_PORT")));
         Self {
@@ -41,7 +42,7 @@ impl YdbClientBuilder {
             self.namespace.as_str(),
             database.as_str(),
         )
-            .await;
+        .await;
         let mut client = Self::connect(connection_url.as_str(), database.as_str()).await;
         Migrator::new_from_dir(migrations)
             .migrate(&mut client)

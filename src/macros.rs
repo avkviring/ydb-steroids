@@ -1,12 +1,12 @@
 #[macro_export]
 macro_rules! update {
-	($ydb:expr, $query:expr) => {{
-		$ydb.retry_transaction(|mut t| async move {
-			t.query($query).await?;
-			t.commit().await?;
-			Ok(())
-		})
-	}};
+    ($ydb:expr, $query:expr) => {{
+        $ydb.retry_transaction(|mut t| async move {
+            t.query($query).await?;
+            t.commit().await?;
+            Ok(())
+        })
+    }};
 }
 
 #[macro_export]
