@@ -3,7 +3,7 @@ name = "ydb-steroids"
 version = "0.1.0"
 edition = "2021"
 authors = ["Kviring A.V. <alex@kviring.com>"]
-license = "Apache 2.0"
+license = "Apache-2.0"
 description = "Added extra functional to ydb rust client.Such as migrations, macro for query, testcontainer support."
 
 [dependencies]
