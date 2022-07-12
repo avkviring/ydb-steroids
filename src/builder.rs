@@ -43,9 +43,9 @@ impl YdbClientBuilder {
             database.as_str(),
         )
         .await;
-        let mut client = Self::connect(connection_url.as_str(), database.as_str()).await;
+        let client = Self::connect(connection_url.as_str(), database.as_str()).await;
         Migrator::new_from_dir(migrations)
-            .migrate(&mut client)
+            .migrate(&client)
             .await
             .unwrap();
         client
