@@ -1,12 +1,8 @@
 on:
   push:
-    # Pattern matched against refs/tags
     tags:
-      - '*'           # Push events to every tag not containing /
-  workflow_dispatch:
-
+      - '*'
 name: Publish
-
 jobs:
   publish:
     name: Publish
@@ -14,14 +10,13 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
-
       - name: Install stable toolchain
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
           toolchain: stable
           override: true
-
-      - run: cargo publish --token ${CARGO_TOKEN}
+      - run: sed -i 's/999.999.999/${{github.ref_name}}/g' Cargo.toml
+      - run: cargo publish --token ${CARGO_TOKEN} --allow-dirty
         env:
           CARGO_TOKEN: ${{ secrets.CARGO_TOKEN }}
