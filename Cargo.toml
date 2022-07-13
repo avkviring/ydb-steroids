@@ -5,7 +5,7 @@ edition = "2021"
 authors = ["Kviring A.V. <alex@kviring.com>"]
 license = "Apache-2.0"
 description = "Added extra functional to yandex database rust client. Such as migrations, macro for query, testcontainer support."
-repository = "https://github.com/cheetah-game-platform/ydb-rust-steroids"
+repository = "https://github.com/cheetah-game-platform/ydb-steroids"
 
 [dependencies]
 ydb = "0.2.0"
